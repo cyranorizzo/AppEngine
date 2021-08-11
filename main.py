@@ -1,2 +1,2 @@
-from calriz.wsgi import application
+from AppEngine.wsgi import application
 app = application
