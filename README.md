@@ -18,7 +18,7 @@ $ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cl
 Make sure you have apt-transport-https installed:
 
 $ sudo apt-get install apt-transport-https ca-certificates gnupg
-Note: If your distribution does not support the signed-by option run this command instead:
+> Note: If your distribution does not support the signed-by option run this command instead:
 
 $ echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 Note: Make sure you do not have duplicate entries for the cloud-sdk repo in /etc/apt/sources.list.d/google-cloud-sdk.list.
@@ -27,8 +27,8 @@ Note: Make sure you do not have duplicate entries for the cloud-sdk repo in /etc
 2. Import the Google Cloud public key:
 
 $ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-Note: If you are unable to get latest updates due to an expired key, obtain the latest apt-get.gpg key file.
-Note: If your distribution's apt-key command does not support the --keyring argument run this command instead:
+> Note: If you are unable to get latest updates due to an expired key, obtain the latest apt-get.gpg key file.
+> Note: If your distribution's apt-key command does not support the --keyring argument run this command instead:
 
 $ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
