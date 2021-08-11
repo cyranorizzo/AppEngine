@@ -28,6 +28,7 @@ Note: Make sure you do not have duplicate entries for the cloud-sdk repo in /etc
 
 $ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 > Note: If you are unable to get latest updates due to an expired key, obtain the latest apt-get.gpg key file.
+
 > Note: If your distribution's apt-key command does not support the --keyring argument run this command instead:
 
 $ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
