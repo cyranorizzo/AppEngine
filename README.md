@@ -10,7 +10,7 @@ Google Cloud SDK
 ----------------
 Tools and libraries for interacting with Google Cloud products and services. https://cloud.google.com/sdk
 
-# Installation
+Installation
 1. Add the Cloud SDK distribution URI as a package source:
 
 $ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
@@ -44,7 +44,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 
 
 4. Optionally, install any of these additional components:
-google-cloud-sdk-app-engine-python
+- google-cloud-sdk-app-engine-python
 google-cloud-sdk-app-engine-python-extras
 google-cloud-sdk-app-engine-java
 google-cloud-sdk-app-engine-go
