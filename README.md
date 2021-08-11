@@ -19,11 +19,11 @@ gcloud services enable sqladmin
 gcloud sql instances create portal-pro1 --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-east1-b
 
 
-# https://dl.google.com/cloudsql/cloud_sql_proxy_x64.exe
-# curl -o cloud_sql_proxy https://dl.google.com/cloudsql/cloud_sql_proxy.darwin.amd64 && chmod +x cloud_sql_proxy
-# wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && chmod +x cloud_sql_proxy
-# gcloud sql instances describe portal-pro1
-# cloud_sql_proxy.exe -instances="core-160214:us-east1:portal-pro1"=tcp:3306
+https://dl.google.com/cloudsql/cloud_sql_proxy_x64.exe
+curl -o cloud_sql_proxy https://dl.google.com/cloudsql/cloud_sql_proxy.darwin.amd64 && chmod +x cloud_sql_proxy
+wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && chmod +x cloud_sql_proxy
+gcloud sql instances describe portal-pro1
+cloud_sql_proxy.exe -instances="core-160214:us-east1:portal-pro1"=tcp:3306
 
 Google Cloud App Engine
 ----------------------- 
