@@ -63,7 +63,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 
 For example, the google-cloud-sdk-app-engine-java component can be installed as follows:
 ```
-sudo apt-get install google-cloud-sdk-app-engine-java
+sudo apt-get install google-cloud-sdk-app-engine-python
 ```
 
 #### 5. Run gcloud init to get started:
