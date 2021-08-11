@@ -8,7 +8,7 @@ New customers get $300 in free credits to spend on Google Cloud during the first
 Tools and libraries for interacting with Google Cloud products and services. 
 
 ### Installation
-1. Add the Cloud SDK distribution URI as a package source:
+#### 1. Add the Cloud SDK distribution URI as a package source:
 ```
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 ```
@@ -25,7 +25,7 @@ echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /e
 > Note: Make sure you do not have duplicate entries for the cloud-sdk repo in /etc/apt/sources.list.d/google-cloud-sdk.list.
 
 
-2. Import the Google Cloud public key:
+#### 2. Import the Google Cloud public key:
 ```
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 ```
@@ -36,7 +36,7 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 ```
 
-3. Update and install the Cloud SDK:
+#### 3. Update and install the Cloud SDK:
 ```
 sudo apt-get update && sudo apt-get install google-cloud-sdk
 ```
@@ -47,7 +47,7 @@ Docker Tip: If installing the Cloud SDK inside a Docker image, use a single RUN 
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
 ```
 
-4. Optionally, install any of these additional components:
+#### 4. Optionally, install any of these additional components:
 - google-cloud-sdk-app-engine-python
 - google-cloud-sdk-app-engine-python-extras
 - google-cloud-sdk-app-engine-java
@@ -62,16 +62,16 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 - kubectl
 
 For example, the google-cloud-sdk-app-engine-java component can be installed as follows:
-
+```
 sudo apt-get install google-cloud-sdk-app-engine-java
+```
 
-
-5. Run gcloud init to get started:
-
+#### 5. Run gcloud init to get started:
+```
 gcloud init
+```
 
-Google Cloud SQL
-----------------
+## Google Cloud SQL
 Fully managed relational database service for MySQL, PostgreSQL, and SQL Server. https://cloud.google.com/sql
 
 
