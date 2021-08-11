@@ -4,22 +4,24 @@ Let´s share.
 ## [Google Cloud Console](http://console.cloud.google.com)
 New customers get $300 in free credits to spend on Google Cloud during the first 90 days. All Google Cloud customers get 28 instance hours per day free of charge. 
 
-Google Cloud SDK
-----------------
-Tools and libraries for interacting with Google Cloud products and services. https://cloud.google.com/sdk
+## [Google Cloud SDK](https://cloud.google.com/sdk)
+Tools and libraries for interacting with Google Cloud products and services. 
 
-Installation
+### Installation
 1. Add the Cloud SDK distribution URI as a package source:
 ```
 $ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 ```
 
 Make sure you have apt-transport-https installed:
-
+```
 $ sudo apt-get install apt-transport-https ca-certificates gnupg
+```
 > Note: If your distribution does not support the signed-by option run this command instead:
 
+```
 $ echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+```
 Note: Make sure you do not have duplicate entries for the cloud-sdk repo in /etc/apt/sources.list.d/google-cloud-sdk.list.
 
 
