@@ -45,19 +45,19 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 
 4. Optionally, install any of these additional components:
 - google-cloud-sdk-app-engine-python
-google-cloud-sdk-app-engine-python-extras
-google-cloud-sdk-app-engine-java
-google-cloud-sdk-app-engine-go
-google-cloud-sdk-bigtable-emulator
-google-cloud-sdk-cbt
-google-cloud-sdk-cloud-build-local
-google-cloud-sdk-datalab
-google-cloud-sdk-datastore-emulator
-google-cloud-sdk-firestore-emulator
-google-cloud-sdk-pubsub-emulator
-kubectl
-For example, the google-cloud-sdk-app-engine-java component can be installed as follows:
+- google-cloud-sdk-app-engine-python-extras
+- google-cloud-sdk-app-engine-java
+- google-cloud-sdk-app-engine-go
+- google-cloud-sdk-bigtable-emulator
+- google-cloud-sdk-cbt
+- google-cloud-sdk-cloud-build-local
+- google-cloud-sdk-datalab
+- google-cloud-sdk-datastore-emulator
+- google-cloud-sdk-firestore-emulator
+- google-cloud-sdk-pubsub-emulator
+- kubectl
 
+For example, the google-cloud-sdk-app-engine-java component can be installed as follows:
 
 sudo apt-get install google-cloud-sdk-app-engine-java
 
