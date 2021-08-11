@@ -7,8 +7,7 @@ New customers get $300 in free credits to spend on Google Cloud during the first
 ## [Google Cloud SDK](https://cloud.google.com/sdk)
 Tools and libraries for interacting with Google Cloud products and services. 
 
-### Installation
-#### 1. Add the Cloud SDK distribution URI as a package source:
+### 1. Add the Cloud SDK distribution URI as a package source:
 ```
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 ```
@@ -25,7 +24,7 @@ echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /e
 > Note: Make sure you do not have duplicate entries for the cloud-sdk repo in /etc/apt/sources.list.d/google-cloud-sdk.list.
 
 
-#### 2. Import the Google Cloud public key:
+### 2. Import the Google Cloud public key:
 ```
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 ```
@@ -36,7 +35,7 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 ```
 
-#### 3. Update and install the Cloud SDK:
+### 3. Update and install the Cloud SDK:
 ```
 sudo apt-get update && sudo apt-get install google-cloud-sdk
 ```
@@ -47,7 +46,7 @@ Docker Tip: If installing the Cloud SDK inside a Docker image, use a single RUN 
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
 ```
 
-#### 4. Optionally, install any of these additional components:
+### 4. Optionally, install any of these additional components:
 - google-cloud-sdk-app-engine-python
 - google-cloud-sdk-app-engine-python-extras
 - google-cloud-sdk-app-engine-java
@@ -61,34 +60,29 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 - google-cloud-sdk-pubsub-emulator
 - kubectl
 
-For example, the google-cloud-sdk-app-engine-java component can be installed as follows:
+For the example, the google-cloud-sdk-app-engine-python component need be installed as follows:
 ```
 sudo apt-get install google-cloud-sdk-app-engine-python
 ```
 
-#### 5. Run gcloud init to get started:
+### 5. Run gcloud init to get started:
 ```
 gcloud init
 ```
 
-## Google Cloud SQL
-Fully managed relational database service for MySQL, PostgreSQL, and SQL Server. https://cloud.google.com/sql
+## [Google Cloud SQL](https://cloud.google.com/sql)
+Fully managed relational database service for MySQL, PostgreSQL, and SQL Server. 
 
-
+sudo apt install mysql-client
 gcloud services enable sqladmin
-gcloud sql instances create portal-pro1 --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-east1-b
-
-
-https://dl.google.com/cloudsql/cloud_sql_proxy_x64.exe
-
+gcloud sql instances create gcloud sql connect djangodb --user=root --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-central1-a
+gcloud sql users create djangouser --instance=djangodb --host=% --password=djangoPassword
+gcloud sql databases create djangodb --instance=djangodb
+gcloud sql instances describe djangodb
 curl -o cloud_sql_proxy https://dl.google.com/cloudsql/cloud_sql_proxy.darwin.amd64 && chmod +x cloud_sql_proxy
+./cloud_sql_proxy -instances="bedu-tech-lab:us-central1:djangodb"=tcp:3306
+mysql -p -u djangouser -P 3306
 
-wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && chmod +x cloud_sql_proxy
-
-gcloud sql instances describe portal-pro1
-
-cloud_sql_proxy.exe -instances="core-160214:us-east1:portal-pro1"=tcp:3306
-
-Google Cloud App Engine
+## [Google Cloud App Engine](https://cloud.google.com/appengine)
 ----------------------- 
-Build highly scalable applications on a fully managed serverless platform. https://cloud.google.com/appengine
+Build highly scalable applications on a fully managed serverless platform.

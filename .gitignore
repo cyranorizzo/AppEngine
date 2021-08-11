@@ -4,3 +4,4 @@ my.cnf
 cmd.txt
 venv
 .env
+cloud_sql_proxy
