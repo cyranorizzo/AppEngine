@@ -173,7 +173,7 @@ echo "DB_HOST = '/cloudsql/[project]:us-central1:django'" >> .env
 
 Install django dependences
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 Start a localhost proxy to the database on Google Cloud SQL
