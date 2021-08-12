@@ -164,13 +164,10 @@ cd AppEngine
 
 Write the credentials file with the previsly database, user and password created
 ```
-cat > .env << EOF
-# Database credentials
-DB_HOST = '/cloudsql/[project]:us-central1:django'
-DB_NAME = 'djangodb'
-DB_USER = 'djangouser'
-DB_PASSWORD = 'djangoPassword'
-EOF
+echo "DB_PASSWORD = 'djangoPassword'" > .env
+echo "DB_NAME = 'djangodb'" >> .env
+echo "DB_USER = 'djangouser'" >> .env
+echo "DB_HOST = '/cloudsql/[project]:us-central1:django'" >> .env
 ```
 > Note the instance is buited from [project]:us-central1:djangodb
 
