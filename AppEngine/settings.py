@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from django.utils.translation import gettext as _
+from dotenv import load_dotenv
+
 import os
+
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,9 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o!d(o3wwopg#emt3=5qw#*lms$!zb90i7($+j#5)qqsi0l-m(b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.getenv('GAE_APPLICATION', None):
@@ -84,10 +86,10 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/bedu-tech-lab:us-central1:djangodb',
-            'NAME': 'djangodb',
-            'USER': 'djangouser',
-            'PASSWORD': 'djangoPassword',
+            'HOST': DB_HOST,
+            'NAME': DB_NAME,
+            'USER': DB_USER,
+            'PASSWORD': DB_PASSWORD,
             
         }
     }
@@ -103,9 +105,9 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3306',
-            'NAME': 'djangodb',
-            'USER': 'djangouser',
-            'PASSWORD': 'djangoPassword',
+            'NAME': DB_NAME,
+            'USER': DB_USER,
+            'PASSWORD': DB_PASSWORD,
         }
     }
 

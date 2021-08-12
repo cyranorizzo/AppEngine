@@ -114,32 +114,39 @@ gcloud init
 Fully managed relational database service for MySQL, PostgreSQL, and SQL Server. 
 
 Requirements for testing at local laboratories:
+
 ```
 sudo apt install default-mysql-client python3-mysqldb libssl-dev
 ```
 
 Cloud SQL Service Activation:
+
 ```
 gcloud services enable sqladmin
 ```
 
 Create an instance that will serve as a database for django:
+
 ```
-gcloud sql instances create gcloud sql connect djangodb --user=root --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-central1-a
+gcloud sql instances create --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-central1-a
 ```
 
 Create a user to access the django database:
+
 ```
 gcloud sql users create djangouser --instance=djangodb --host=% --password=djangoPassword
 ```
+
 > Note that there is a password that must be changed in productive environments
 
 Create a database within instance that will serve as a database for django:
+
 ```
 gcloud sql databases create djangodb --instance=djangodb
 ```
 
 List instance details:
+
 ```
 gcloud sql instances describe djangodb
 ```
@@ -172,14 +179,6 @@ python3 -m virtualenv venv
 
 ```
 source venv/bin/activate
-```
-
-```
-pip install django
-```
-
-```
-pip install mysqlclient
 ```
 
 ```
