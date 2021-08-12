@@ -4,6 +4,18 @@ Let´s share.
 ## [Google Cloud Console](http://console.cloud.google.com)
 New customers get $300 in free credits to spend on Google Cloud during the first 90 days. All Google Cloud customers get 28 instance hours per day free of charge. 
 
+To create a new project, do the following:
+
+### 1. Go to the Manage resources page in the Cloud Console.
+### [Go to the Manage Resources page](https://console.cloud.google.com/cloud-resource-manager?_ga=2.65163304.789727678.1628784528-114546109.1601312323&_gac=1.216221540.1628784616.CjwKCAjwjdOIBhA_EiwAHz8xmyaQuvGfBGN9u88yl5g4NICzITiWGIQIeJM1qJDhl1I7Sli1pq87_BoCwzkQAvD_BwE)
+### 2. On the Select organization drop-down list at the top of the page, select the organization in which you want to create a project. If you are a free trial user, skip this step, as this list does not appear.
+### 3. Click Create Project.
+### 4. In the New Project window that appears, enter a project name and select a billing account as applicable. A project name can contain only letters, numbers, single quotes, hyphens, spaces, or exclamation points, and must be between 4 and 30 characters.
+### 5. Enter the parent organization or folder in the Location box. That resource will be the hierarchical parent of the new project.
+### 6. When you're finished entering new project details, click Create.
+
+Crie um projeto do Google Cloud, se você ainda não tiver um.
+
 ## [Google Cloud SDK](https://cloud.google.com/sdk)
 Tools and libraries for interacting with Google Cloud products and services. 
 
@@ -70,18 +82,71 @@ sudo apt-get install google-cloud-sdk-app-engine-python
 gcloud init
 ```
 
+> Welcome! This command will take you through the configuration of gcloud.
+> Your current configuration has been set to: [default]
+> You can skip diagnostics next time by using the following flag:
+>  gcloud init --skip-diagnostics
+> Network diagnostic detects and fixes local network connection issues.
+> Checking network connection...done.                                                                                                                                                              
+> Reachability Check passed.
+> Network diagnostic passed (1/1 checks passed).
+> You must log in to continue. Would you like to log in (Y/n)? y
+
+> Google Cloud SDK wants to access your Google Account
+> xxxx@gmail.com
+> This will allow Google Cloud SDK to:
+> See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.
+> View and manage your Google Compute Engine resources
+> View and manage your applications deployed on Google App Engine
+> Make sure you trust Google Cloud SDK
+> You may be sharing sensitive info with this site or app. You can always see or remove access in your Google Account.
+> Learn how Google helps you share data safely.
+> See Google Cloud SDK’s Privacy Policy and Terms of Service.
+
+#### Allow
+
+> Please enter numeric choice or text value (must exactly match list item):
+> Do you want to configure a default Compute Region and Zone? (Y/n)? 
+> Please enter numeric choice or text value (must exactly match list item):  8
+
+
 ## [Google Cloud SQL](https://cloud.google.com/sql)
 Fully managed relational database service for MySQL, PostgreSQL, and SQL Server. 
 
-sudo apt install mysql-client python3-mysqldb
+Requirements for testing at local laboratories:
+```
+sudo apt install default-mysql-client python3-mysqldb libssl-dev
+```
+
+Cloud SQL Service Activation:
+```
 gcloud services enable sqladmin
+```
+
+Create an instance that will serve as a database for django:
+```
 gcloud sql instances create gcloud sql connect djangodb --user=root --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-central1-a
+```
+
+Create a user to access the django database:
+```
 gcloud sql users create djangouser --instance=djangodb --host=% --password=djangoPassword
+```
+> Note that there is a password that must be changed in productive environments
+
+Create a database within instance that will serve as a database for django:
+```
 gcloud sql databases create djangodb --instance=djangodb
+```
+
+List instance details:
+```
 gcloud sql instances describe djangodb
-curl -o cloud_sql_proxy https://dl.google.com/cloudsql/cloud_sql_proxy.darwin.amd64 && chmod +x cloud_sql_proxy
-./cloud_sql_proxy -instances="bedu-tech-lab:us-central1:djangodb"=tcp:3306
-mysql -p -u djangouser -P 3306
+```
+
+
+```
+
 
 ## [Google Cloud App Engine](https://cloud.google.com/appengine)
 ----------------------- 
@@ -89,9 +154,55 @@ Build highly scalable applications on a fully managed serverless platform.
 
 For the example, the google-cloud-sdk-app-engine-python component need be installed as follows:
 ```
-sudo apt-get install google-cloud-sdk-app-engine-python
+sudo apt-get install google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras
+```
+
+
+```
+git clone https://github.com/cyranorizzo/AppEngine.git
 ```
 
 ```
-sudo apt-get install google-cloud-sdk-app-engine-python-extras
+cd AppEngine
 ```
+
+```
+python3 -m virtualenv venv
+```
+
+```
+source venv/bin/activate
+```
+
+```
+pip install django
+```
+
+```
+pip install mysqlclient
+```
+
+```
+python manage.py migrate
+```
+
+```
+python manage.py createsuperuser
+```
+
+```
+python manage.py runserver 80
+```
+
+```
+python manage.py collectstatic
+```
+
+
+```
+bash cloud_sql_proxy -instances="bedu-tech-lab:us-central1:djangodb"=tcp:3306
+```
+> I recommend running on another terminal (tty)
+
+```
+mysql -p -u djangouser -P 3306
