@@ -14,8 +14,6 @@ To create a new project, do the following:
 ### 5. Enter the parent organization or folder in the Location box. That resource will be the hierarchical parent of the new project.
 ### 6. When you're finished entering new project details, click Create.
 
-Crie um projeto do Google Cloud, se você ainda não tiver um.
-
 ## [Google Cloud SDK](https://cloud.google.com/sdk)
 Tools and libraries for interacting with Google Cloud products and services. 
 
@@ -52,11 +50,6 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update && sudo apt-get install google-cloud-sdk
 ```
 For additional apt-get options, such as disabling prompts or dry runs, refer to the apt-get man pages.
-
-Docker Tip: If installing the Cloud SDK inside a Docker image, use a single RUN step instead:
-```
-RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
-```
 
 ### 4. Optionally, install any of these additional components:
 - google-cloud-sdk-app-engine-python
@@ -103,7 +96,7 @@ gcloud init
 > Learn how Google helps you share data safely.
 > See Google Cloud SDK’s Privacy Policy and Terms of Service.
 
-#### Allow
+### Allow
 
 > Please enter numeric choice or text value (must exactly match list item):
 > Do you want to configure a default Compute Region and Zone? (Y/n)? 
@@ -173,12 +166,13 @@ Write the credentials file with the previsly database, user and password created
 ```
 cat > .env << EOF
 # Database credentials
-DB_HOST = '/cloudsql/bedu-tech-lab:us-central1:djangodb'
+DB_HOST = '/cloudsql/[project]:[region]:[instance]'
 DB_NAME = 'djangodb'
 DB_USER = 'djangouser'
 DB_PASSWORD = 'djangoPassword'
 EOF
 ```
+> Note the instance is buited from [project]:[region]:[instance]
 
 Install django dependences
 ```
@@ -187,9 +181,9 @@ pip install django mysqlclient python-dotenv
 
 Start a localhost proxy to the database on Google Cloud SQL
 ```
-./cloud_sql_proxy -instances="bedu-tech-lab:us-central1:djangodb"=tcp:3306
+./cloud_sql_proxy -instances="[project]:[region]:[instance]"=tcp:3306
 ```
-> Note the instance is buited from <project>:<region>:<instance>
+> Note the instance is buited from [project]:[region]:[instance]
 > I recommend running on another terminal (tty)
 
 Inicialize the database with django requiremetns
