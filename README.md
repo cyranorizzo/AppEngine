@@ -121,7 +121,7 @@ gcloud services enable sqladmin
 Create an instance that will serve as a database for django:
 
 ```
-gcloud sql instances create --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-central1-a
+gcloud sql instances create djangodb --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-central1-a
 ```
 
 Create a user to access the django database:
@@ -166,13 +166,13 @@ Write the credentials file with the previsly database, user and password created
 ```
 cat > .env << EOF
 # Database credentials
-DB_HOST = '/cloudsql/[project]:[region]:[instance]'
+DB_HOST = '/cloudsql/[project]:us-central1:django'
 DB_NAME = 'djangodb'
 DB_USER = 'djangouser'
 DB_PASSWORD = 'djangoPassword'
 EOF
 ```
-> Note the instance is buited from [project]:[region]:[instance]
+> Note the instance is buited from [project]:us-central1:djangodb
 
 Install django dependences
 ```
@@ -181,9 +181,9 @@ pip install -r requirements.txt
 
 Start a localhost proxy to the database on Google Cloud SQL
 ```
-./cloud_sql_proxy -instances="[project]:[region]:[instance]"=tcp:3306
+./cloud_sql_proxy -instances="[project]:us-central1:djangodb"=tcp:3306
 ```
-> Note the instance is buited from [project]:[region]:[instance]
+> Note the instance is buited from [project]:us-central1:djangodb
 > I recommend running on another terminal (tty)
 
 Inicialize the database with django requiremetns
