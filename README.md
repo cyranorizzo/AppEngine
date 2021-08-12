@@ -73,7 +73,7 @@ gcloud init
 ## [Google Cloud SQL](https://cloud.google.com/sql)
 Fully managed relational database service for MySQL, PostgreSQL, and SQL Server. 
 
-sudo apt install mysql-client
+sudo apt install mysql-client python3-mysqldb
 gcloud services enable sqladmin
 gcloud sql instances create gcloud sql connect djangodb --user=root --database-version MYSQL_8_0 --tier=db-f1-micro --zone us-central1-a
 gcloud sql users create djangouser --instance=djangodb --host=% --password=djangoPassword
@@ -86,3 +86,12 @@ mysql -p -u djangouser -P 3306
 ## [Google Cloud App Engine](https://cloud.google.com/appengine)
 ----------------------- 
 Build highly scalable applications on a fully managed serverless platform.
+
+For the example, the google-cloud-sdk-app-engine-python component need be installed as follows:
+```
+sudo apt-get install google-cloud-sdk-app-engine-python
+```
+
+```
+sudo apt-get install google-cloud-sdk-app-engine-python-extras
+```
