@@ -1,5 +1,5 @@
 # Calriz, CORP Application
-runtime: python39
+runtime: python37
 env: standard
 
 manual_scaling:

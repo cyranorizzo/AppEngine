@@ -84,10 +84,11 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/core-160214:us-east1:portal-pro1',
-            'USER': 'calrizUser',
-            'PASSWORD': 'P@ssw0rd',
-            'NAME': 'calrizDB',
+            'HOST': '/cloudsql/bedu-tech-lab:us-central1:djangodb',
+            'NAME': 'djangodb',
+            'USER': 'djangouser',
+            'PASSWORD': 'djangoPassword',
+            
         }
     }
 else:
@@ -102,9 +103,9 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3307',
-            'NAME': 'calrizDB',
-            'USER': 'calrizUser',
-            'PASSWORD': 'P@ssw0rd',
+            'NAME': 'djangodb',
+            'USER': 'djangouser',
+            'PASSWORD': 'djangoPassword',
         }
     }
 
