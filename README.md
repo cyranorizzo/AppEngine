@@ -116,7 +116,7 @@ Fully managed relational database service for MySQL, PostgreSQL, and SQL Server.
 Requirements for testing at local laboratories:
 
 ```
-sudo apt install default-mysql-client python3-mysqldb libssl-dev
+sudo apt install mysql-client default-mysql-client python3-mysqldb libssl-dev libsqlclient-dev
 ```
 
 Cloud SQL Service Activation:
@@ -151,57 +151,72 @@ List instance details:
 gcloud sql instances describe djangodb
 ```
 
-
-```
-
-
 ## [Google Cloud App Engine](https://cloud.google.com/appengine)
------------------------ 
 Build highly scalable applications on a fully managed serverless platform.
 
 For the example, the google-cloud-sdk-app-engine-python component need be installed as follows:
 ```
-sudo apt-get install google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras
+sudo apt-get install google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras python3-pip python3-dev 
 ```
 
-
+Clone a custom django repository
 ```
 git clone https://github.com/cyranorizzo/AppEngine.git
 ```
 
+Change directory to the django project
 ```
 cd AppEngine
 ```
 
+Write the credentials file with the previsly database, user and password created
 ```
-python3 -m virtualenv venv
-```
-
-```
-source venv/bin/activate
-```
-
-```
-python manage.py migrate
-```
-
-```
-python manage.py createsuperuser
+cat > .env << EOF
+# Database credentials
+DB_HOST = '/cloudsql/bedu-tech-lab:us-central1:djangodb'
+DB_NAME = 'djangodb'
+DB_USER = 'djangouser'
+DB_PASSWORD = 'djangoPassword'
+EOF
 ```
 
+Install django dependences
 ```
-python manage.py runserver 80
-```
-
-```
-python manage.py collectstatic
+pip install django mysqlclient python-dotenv
 ```
 
-
+Start a localhost proxy to the database on Google Cloud SQL
 ```
-bash cloud_sql_proxy -instances="bedu-tech-lab:us-central1:djangodb"=tcp:3306
+./cloud_sql_proxy -instances="bedu-tech-lab:us-central1:djangodb"=tcp:3306
 ```
+> Note the instance is buited from <project>:<region>:<instance>
 > I recommend running on another terminal (tty)
 
+Inicialize the database with django requiremetns
 ```
-mysql -p -u djangouser -P 3306
+python3 manage.py migrate
+```
+
+Create a super user to the admin
+```
+python3 manage.py createsuperuser
+```
+
+Start localy to test
+```
+python3 manage.py runserver 80
+```
+
+Collect all static files
+```
+python3 manage.py collectstatic
+```
+
+Finally deploy
+```
+gcloud app deploy
+```
+> You can run the same command many times 
+
+After this you can reach the application from the target url.
+The debug are automaticaly set to false, so the root site my not work, try to access xxxx.xx.x.appspot.com</admin>

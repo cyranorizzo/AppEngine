@@ -13,9 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from django.utils.translation import gettext as _
 from dotenv import load_dotenv
-
-import os
-
+from os import environ
 
 load_dotenv()
 
@@ -26,8 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-o!d(o3wwopg#emt3=5qw#*lms$!zb90i7($+j#5)qqsi0l-m(b'
+
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.getenv('GAE_APPLICATION', None):
+if environ.get('GAE_APPLICATION', None):
     DEBUG = False
 else:
     DEBUG = True
@@ -80,16 +81,16 @@ WSGI_APPLICATION = 'AppEngine.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if os.getenv('GAE_APPLICATION', None):
+if environ.get('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at '/cloudsql/core-160214:us-east1:portal-pro1'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': DB_HOST,
-            'NAME': DB_NAME,
-            'USER': DB_USER,
-            'PASSWORD': DB_PASSWORD,
+            'HOST': environ.get('DB_HOST'),
+            'NAME': environ.get('DB_NAME'),
+            'USER': environ.get('DB_USER'),
+            'PASSWORD': environ.get('DB_PASSWORD'),
             
         }
     }
@@ -105,9 +106,9 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3306',
-            'NAME': DB_NAME,
-            'USER': DB_USER,
-            'PASSWORD': DB_PASSWORD,
+            'NAME': environ.get('DB_NAME'),
+            'USER': environ.get('DB_USER'),
+            'PASSWORD': environ.get('DB_PASSWORD'),
         }
     }
 
