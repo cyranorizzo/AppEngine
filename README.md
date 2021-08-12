@@ -176,7 +176,7 @@ EOF
 
 Install django dependences
 ```
-pip install django mysqlclient python-dotenv
+pip install -r requirements.txt
 ```
 
 Start a localhost proxy to the database on Google Cloud SQL
